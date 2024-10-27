@@ -1,0 +1,289 @@
+  right();
+  if (uzdF()<=20)
+  {
+    wallPosition=1;
+  }
+  else if (uzdF()>20 && uzdF()<30)
+  {
+    wallPosition=2;
+  }
+  else if (uzdF()>30 && uzdF()<40)
+  {
+    wallPosition=3;
+  }
+  else
+  {
+    wallPosition=4;
+  }
+  left();
+  crossCount=0;
+
+
+  
+void loop()
+{
+  
+   preg(BASE_SPEED); // едем по preg с базовой скоростью
+   obezdObject();   // объезд препятствия
+   finish();
+
+  //test();
+
+  //  обработка перекрестков
+  if (isOnCross())
+  {
+    crossCount++;
+    doezd();
+
+    
+    if (crossCount==5)
+    {
+      right();
+    }
+    if (crossCount==6)
+    {
+      pregSomeTime(2200);
+      go(0,0,BASE_DELAY);
+      go(-BASE_SPEED,BASE_SPEED,povorotDelay*1.8);
+      if (uzdF()<DISTANCE_TO_CHECK_OBJECT)
+      {
+        finishcount++;
+      }
+      right();
+      pregSomeTime(2200);
+      go(0,0,BASE_DELAY);
+      go(-BASE_SPEED,BASE_SPEED,povorotDelay*1.8);
+      if (uzdF()<DISTANCE_TO_CHECK_OBJECT)
+      {
+        finishcount++;
+      }
+      right();
+      pregSomeTime(2200);
+      go(0,0,BASE_DELAY);
+      go(-BASE_SPEED,BASE_SPEED,povorotDelay*1.8);
+      if (uzdF()<DISTANCE_TO_CHECK_OBJECT)
+      {
+        finishcount++;
+      }
+      right();
+    }
+    if (crossCount==7)
+    {
+      right();
+      FINISH_CROSS_COUNT=FINISH_CROSS_COUNT+finishcount;
+    }
+    }
+}
+
+void drive1()
+{
+  if (crossCount == 4)
+  {
+    right();
+  }
+  if (crossCount == 5)
+  {
+    right();
+  }
+  if (crossCount == 6)
+  {
+    right();
+  }
+  if (crossCount == 7)
+  {
+    moveToTakeObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 10)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 11)
+  {
+    right();
+  }
+  if (crossCount == 12)
+  {
+    left();
+  }
+  if (crossCount == 13)
+  {
+    right();
+  }
+  if (crossCount == 14)
+  {
+    while (getDistance(UZS_TRIGGER_PIN, UZS_ECHO_PIN, pastUZDSValue) > DISTANCE_TO_START_OBEZD)
+    {
+      preg(BASE_SPEED);
+    }
+    go(BASE_SPEED, BASE_SPEED, BASE_DELAY * 3);
+    go(0, 0, BASE_DELAY);
+    while (getDistance(UZF_TRIGGER_PIN, UZF_ECHO_PIN, pastUZDFValue) > DISTANCE_TO_START_OBEZD)
+    {
+      go(BASE_SPEED, -BASE_SPEED);
+    }
+    go(0, 0, BASE_DELAY);
+    moveToTakeObjectOnBlack();
+    left();
+  }
+  if (crossCount == 15)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 16)
+  {
+    right();
+  }
+  if (crossCount == 21)
+  {
+    finish();
+  }
+}
+
+void drive2()
+{
+  if (crossCount == 4)
+  {
+    right();
+  }
+  if (crossCount == 5)
+  {
+    right();
+  }
+  if (crossCount == 6)
+  {
+    right();
+  }
+  if (crossCount == 7)
+  {
+    moveToTakeObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 9)
+  {
+    left();
+  }
+  if (crossCount == 10)
+  {
+    right();
+  }
+  if (crossCount == 11)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 13)
+  {
+    right();
+  }
+
+  if (crossCount == 14)
+  {
+    while (getDistance(UZS_TRIGGER_PIN, UZS_ECHO_PIN, pastUZDSValue) > DISTANCE_TO_START_OBEZD)
+    {
+      preg(BASE_SPEED);
+    }
+    go(BASE_SPEED, BASE_SPEED, BASE_DELAY * 3);
+    go(0, 0, BASE_DELAY);
+    while (getDistance(UZF_TRIGGER_PIN, UZF_ECHO_PIN, pastUZDFValue) > DISTANCE_TO_START_OBEZD)
+    {
+      go(BASE_SPEED, -BASE_SPEED);
+    }
+    go(0, 0, BASE_DELAY);
+    moveToTakeObjectOnBlack();
+    left();
+  }
+  if (crossCount == 15)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 16)
+  {
+    right();
+  }
+  if (crossCount == 21)
+  {
+    finish();
+  }
+}
+
+void drive3()
+{
+  if (crossCount == 4)
+  {
+    right();
+  }
+  if (crossCount == 5)
+  {
+    right();
+  }
+  if (crossCount == 6)
+  {
+    right();
+  }
+  if (crossCount == 7)
+  {
+    moveToTakeObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 9)
+  {
+    left();
+  }
+
+  if (crossCount == 11)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 12)
+  {
+    right();
+  }
+  if (crossCount == 13)
+  {
+    right();
+  }
+
+  if (crossCount == 14)
+  {
+    while (getDistance(UZS_TRIGGER_PIN, UZS_ECHO_PIN, pastUZDSValue) > DISTANCE_TO_START_OBEZD)
+    {
+      preg(BASE_SPEED);
+    }
+    go(BASE_SPEED, BASE_SPEED, BASE_DELAY * 3);
+    go(0, 0, BASE_DELAY);
+    while (getDistance(UZF_TRIGGER_PIN, UZF_ECHO_PIN, pastUZDFValue) > DISTANCE_TO_START_OBEZD)
+    {
+      go(BASE_SPEED, -BASE_SPEED);
+    }
+    go(0, 0, BASE_DELAY);
+    moveToTakeObjectOnBlack();
+    left();
+  }
+  if (crossCount == 15)
+  {
+    moveToPutObjectOnBlack();
+    left();
+    left();
+  }
+  if (crossCount == 16)
+  {
+    right();
+  }
+  if (crossCount == 21)
+  {
+    finish();
+  }
+}

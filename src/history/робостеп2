@@ -1,0 +1,57 @@
+// void loop()
+// {
+//   // ##### Тесты Начало ######
+
+//    //test();
+
+//   // ##### Тесты Конец ######
+
+//   preg(BASE_SPEED);
+//   if (isOnCross())
+//   {
+//     doezd();
+//     crossCount++;
+//     finish();
+
+//     if (crossCount == 1)
+//     {
+//       right();
+//     }
+//     if (crossCount == 2)
+//     {
+//       right();
+//     }
+  
+//     if (crossCount==6)
+//       {
+//         MoveObject90grad();
+//         //left();
+//         //left();
+//       }
+//     if (crossCount == 7)
+//     {
+//       right();
+//     }
+//     if (crossCount == 8)
+//     {
+//       right();
+//     }
+//     if (crossCount == 10)
+//     {
+//       left();
+//       left();
+//     }
+//     if (crossCount == 11)
+//     {
+//       left();
+//     }
+//     if (crossCount == 12)
+//     {
+//       left();
+//       left();
+//     }
+   
+    
+
+//   }
+//  }
