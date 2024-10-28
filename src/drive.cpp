@@ -15,8 +15,8 @@ void go(int L, int R)
   digitalWrite(MOTOR_R_DIRECTION_PIN, R > 0 ? HIGH : LOW); // Управляем направлением правого мотора
   analogWrite(MOTOR_R_SPEED_PIN, abs(R));                  // Управляем скоростью правого мотора
 
-  // LCDprint(0, 5, L);
-  // LCDprint(1, 5, R);
+  // lcdShow(0, 5, L);
+  // lcdShow(1, 5, R);
   // if (logConsole)
   // {
   //  consoleLog("EncL", getEncoderL(), "EncR", getEncoderR());
@@ -54,10 +54,10 @@ void pid(int speed = BASE_SPEED)
 
   // if (logLCD) {
   //     lcdclear();
-  //     LCDprint(0, 15, 1);
-  //     LCDprint(0, 0, Ep);
-  //     LCDprint(1, 0, M1);
-  //     LCDprint(1, 7, M2);
+  //     lcdShow(0, 15, 1);
+  //     lcdShow(0, 0, Ep);
+  //     lcdShow(1, 0, M1);
+  //     lcdShow(1, 7, M2);
   // };
   // if (logConsole)
   // {
@@ -302,10 +302,10 @@ void preg(int speed)
   int M2 = speed - uprvozd;
   M2 = constrain(M2, -MAX_MOTOR_SPEED, MAX_MOTOR_SPEED);
 
-  //   LCDprint(0, 0, M1);
-  //   LCDprint(1, 0, M2);
-  //   LCDprint(1, 8, E);
-  //   LCDprint(1, 8, uprvozd);
+  //   lcdShow(0, 0, M1);
+  //   lcdShow(1, 0, M2);
+  //   lcdShow(1, 8, E);
+  //   lcdShow(1, 8, uprvozd);
   //   delay(500);
   // lcdclear();
 

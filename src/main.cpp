@@ -93,9 +93,9 @@ int const DISTANCE_TO_DRIVE_FINISH = 15;       // сколько сантиме�
 
 // Логгирование
 bool logLCD = true;
-bool logConsole = true;
-unsigned long  timeToShowLED = 10;      // время вывода информации на lcd дисплей
+bool logConsole = false;
 unsigned long  testTime = 5000;         // время для тестирования функции
+const unsigned long  DISPLAY_TIME = 200;         // время для отображения информации на LCD дисплее
 
 void setup()
 {
@@ -131,6 +131,6 @@ void loop()
 
 //driveSomeTime(1000);
 //driveSomeTime(1000,-BASE_SPEED);
-  obezdObject(30,20,40);
+//  obezdObject(30,20,40);
 
 }

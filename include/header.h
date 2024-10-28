@@ -41,7 +41,6 @@ extern const int DISTANCE_TO_START_OBEZD;
 extern int wallPosition;
 extern int FINISH_CROSS_COUNT;
 extern int finishcount;
-extern unsigned long timeToShowLED;
 extern unsigned long testTime;
 extern int otezdDelay;
 extern int banka;
@@ -61,4 +60,5 @@ extern bool followTheLane;
 extern const int CROSS_WIDTH;
 extern bool findBankaThenTurn;
 extern const int DISTANCE_TO_DRIVE_FINISH;
+extern const unsigned long  DISPLAY_TIME;  
 #endif

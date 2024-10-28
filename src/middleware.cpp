@@ -33,8 +33,8 @@ int getIRError()
 {
   int x = getIRSensorValue(IR_SENSOR_L_PIN);
   int y = getIRSensorValue(IR_SENSOR_R_PIN);
-  // LCDprint(0, 0, x);
-  // LCDprint(1, 0, y);
+  // lcdShow(0, 0, x);
+  // lcdShow(1, 0, y);
   return y - x;
 }
 
@@ -42,8 +42,8 @@ int getEncoderError()
 {
   int x = getEncoderL();
   int y = getEncoderR();
-  // LCDprint(0, 0, x);
-  // LCDprint(1, 0, y);
+  // lcdShow(0, 0, x);
+  // lcdShow(1, 0, y);
   return y - x;
 }
 

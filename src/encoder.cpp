@@ -20,7 +20,7 @@ void initENC(){
 
 long getEncoderL(){
 long  value=encL.get();
-//LCDprint(0, 0, value);
+//lcdShow(0, 0, value);
   return -value; // Энкодер выдает отрицательные значения при движении вперед, поэтому меняем знак
 
   
@@ -28,7 +28,7 @@ long  value=encL.get();
 
 long getEncoderR(){
 long  value=encR.get();
-//LCDprint(1, 0, value);
+//lcdShow(1, 0, value);
   return value;
   
 }

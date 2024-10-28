@@ -12,8 +12,8 @@ void testEncoders()
 {
     if (logLCD)
     {
-        LCDprint(0, 0, getEncoderL());
-        LCDprint(1, 0, getEncoderR());
+        lcdShow(0, 0, getEncoderL());
+        lcdShow(1, 0, getEncoderR());
     }
     //  delay(BASE_DELAY);
     if (logConsole)
@@ -30,8 +30,8 @@ void testUZD()
 
     if (logLCD)
     {
-        LCDprint(0, 0, result_f);
-        LCDprint(1, 0, result_s);
+        lcdShow(0, 0, result_f);
+        lcdShow(1, 0, result_s);
     }
     if (logConsole)
     {
@@ -53,8 +53,8 @@ void testIsOnBlack()
     int result_3 = isOnBlack(IR_SENSOR_R_PIN);
     if (logLCD)
     {
-        LCDprint(0, 0, result_1);
-        LCDprint(1, 0, result_2);
+        lcdShow(0, 0, result_1);
+        lcdShow(1, 0, result_2);
     }
     if (logConsole)
     {
@@ -71,9 +71,9 @@ void testIRSensors()
     if (logLCD)
     {
         lcdclear();
-        LCDprint(0, 15, 2);
-        LCDprint(0, 0, result_1);
-        LCDprint(1, 0, result_2);
+        lcdShow(0, 15, 2);
+        lcdShow(0, 0, result_1);
+        lcdShow(1, 0, result_2);
     };
     if (logConsole)
     {
@@ -85,15 +85,15 @@ void testIRSensorsAnalogRead()
 {
     int result_1 = analogRead(IR_SENSOR_L_PIN);
     int result_2 = analogRead(IR_SENSOR_R_PIN);
-    LCDprint(0, 0, result_1);
-    LCDprint(1, 0, result_2);
+    lcdShow(0, 0, result_1);
+    lcdShow(1, 0, result_2);
     //    delay(BASE_DELAY);
 }
 
 void testIsOnCross()
 {
     int result_1 = isOnCross();
-    LCDprint(0, 0, result_1);
+    lcdShow(0, 0, result_1);
     //    delay(BASE_DELAY);
 }
 
@@ -105,23 +105,29 @@ void testFullTurn()
 
 void testDrive(int sppedLeft, int sppedRight, unsigned long testTime)
 {
-    if (logLCD)
-    {
-        lcdclear();
-        LCDprint(0, 15, 1);
-        LCDprint(0, 0, sppedLeft);
-        LCDprint(1, 0, sppedRight);
-    };
-    if (logConsole)
-    {
-        //consoleLog("Speed L", sppedLeft, "Speed R", sppedRight, testTime);
-        
-    };
+    lcdShow(0, 15, 1);
     startTime = millis();
+    unsigned long displayStartTime = 220;
     while (millis() - startTime < testTime)
     {
         go(sppedLeft, sppedRight);
-        consoleLog("EncL", getEncoderL(), "EncR", getEncoderR());
+        if (logLCD)
+        {
+            if (millis() - displayStartTime > DISPLAY_TIME)
+            {
+                displayStartTime = millis();
+                lcdclear();
+                lcdShow(0, 0, sppedLeft);
+                lcdShow(1, 0, sppedRight);
+                lcdShow(0, 8, getEncoderL());
+                lcdShow(1, 8, getEncoderR());
+            }
+        };
+        if (logConsole)
+        {
+            consoleLog("Speed L", sppedLeft, "Speed R", sppedRight, testTime);
+            consoleLog("EncL", getEncoderL(), "EncR", getEncoderR());
+        };
     }
     stop();
     lcdclear();
@@ -132,13 +138,13 @@ void test()
 {
 
     // ########### 1 Оба колеса вперед  #####################
-       testDrive(BASE_SPEED, BASE_SPEED, testTime);
+    testDrive(BASE_SPEED, BASE_SPEED, testTime);
 
     // ########### 2 Оба колеса назад  #####################
-       testDrive(-BASE_SPEED, -BASE_SPEED, testTime);
+    testDrive(-BASE_SPEED, -BASE_SPEED, testTime);
 
     // // ########### 3 ИК сенсоры  #####################
-    // LCDprint(0, 15, 3);
+    // lcdShow(0, 15, 3);
     // startTime = millis();
     // while (millis() - startTime < testTime)
     // {
@@ -147,7 +153,7 @@ void test()
     // lcdclear();
 
     //     //########### 4 сервопривод  #####################
-    // LCDprint(0, 15, 4);
+    // lcdShow(0, 15, 4);
     // startTime = millis();
     // while (millis() - startTime < testTime)
     // {
@@ -156,7 +162,7 @@ void test()
     // lcdclear();
 
     //   //########### 5 УЗ датчики  #####################
-    // LCDprint(0, 15, 5);
+    // lcdShow(0, 15, 5);
     // startTime = millis();
     // while (millis() - startTime < testTime)
     // {
@@ -164,7 +170,7 @@ void test()
     // }
     // lcdclear();
     //    //########### 6 На перекрестке #####################
-    //         LCDprint(0, 15, 6);
+    //         lcdShow(0, 15, 6);
     //         startTime = millis();
     //         while (millis() - startTime < testTime)
     //         {
@@ -172,7 +178,7 @@ void test()
     //         }
     //         lcdclear();
     //    //########### 7 На черной линии #####################
-    //         LCDprint(0, 15, 7);
+    //         lcdShow(0, 15, 7);
     //         startTime = millis();
     //         while (millis() - startTime < testTime)
     //         {
@@ -180,7 +186,7 @@ void test()
     //         }
     //         lcdclear();
     //   ########### Энкодеры  #####################
-    // LCDprint(0, 15, 8);
+    // lcdShow(0, 15, 8);
     // startTime = millis();
     // while (millis() - startTime < testTime)
     // {

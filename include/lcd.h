@@ -2,6 +2,6 @@
 #define LCD_h
 
 void initLCD();
-void LCDprint(int x, int y, float number);
+void lcdShow(int x, int y, float number);
 void lcdclear();
 #endif
