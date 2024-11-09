@@ -53,15 +53,13 @@ void pid(int speed = BASE_SPEED)
   Ei = Ei * 0.7 + Ep * 0.3;
 
   // if (logLCD) {
-  //     lcdclear();
-  //     lcdShow(0, 15, 1);
-  //     lcdShow(0, 0, Ep);
-  //     lcdShow(1, 0, M1);
-  //     lcdShow(1, 7, M2);
-  // };
+  //     lcdShow(0, 0,"M1", M1);
+  //     lcdShow(1, 0, "M2",M2);
+  //      lcdShow(0, 0, "Ep",Ep);
+
+  //  };
   // if (logConsole)
   // {
-  //   consoleLog("EncL", getEncoderL(), "EncR", getEncoderR());
   //   consoleLog("Ep", Ep, "U", U);
   //   consoleLog("Speed L", M1, "Speed R", M2);
   // };

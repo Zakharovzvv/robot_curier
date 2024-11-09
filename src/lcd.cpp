@@ -18,9 +18,17 @@ void lcdclear()
   lcd.clear();
 }
 
-void lcdShow(int x, int y, float number)
+void lcdShow(int x, int y, const char *text)
 {
     lcd.setCursor(y, x);
+    lcd.print(text);
+
+}
+void lcdShow(int x, int y, const char *text, float number)
+{
+    lcd.setCursor(y, x);
+    lcd.print(text);
+    lcd.print(" = ");
     lcd.print(number);
 
 }

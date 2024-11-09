@@ -16,7 +16,7 @@ float uzd(int trigerPin, int echoPin,float& pastValue) {
 }
 
 float getDistance(int trigerPin, int echoPin,float& pastValue) {
-  return uzd( trigerPin,  echoPin, pastValue);
+  return uzd(trigerPin,  echoPin, pastValue);
 
 }
 float getForwardDistance()

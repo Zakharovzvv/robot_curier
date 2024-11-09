@@ -21,13 +21,13 @@ const int MOTOR_L_DIRECTION_PIN = 2;
 const int MOTOR_L_SPEED_PIN = 3;
 const int MOTOR_R_DIRECTION_PIN = 4;
 const int MOTOR_R_SPEED_PIN = 5;
-const int SERVO_PIN = 7;
-const int MOTOR_R_ENCODER_PIN1 = 8;
-const int MOTOR_R_ENCODER_PIN2 = 9;
-const int MOTOR_L_ENCODER_PIN1 = 10;
-const int MOTOR_L_ENCODER_PIN2 = 11;
-const int UZS_TRIGGER_PIN = 12;
-const int UZS_ECHO_PIN = 13;
+const int UZS_TRIGGER_PIN = 6;
+const int UZS_ECHO_PIN = 7;
+const int MOTOR_L_ENCODER_PIN1 = 8;
+const int MOTOR_L_ENCODER_PIN2 = 9;
+const int MOTOR_R_ENCODER_PIN1 = 10;
+const int MOTOR_R_ENCODER_PIN2 = 11;
+const int SERVO_PIN = 12;
 const int IR_SENSOR_L_PIN = A0;
 const int IR_SENSOR_R_PIN = A1;
 const int UZF_TRIGGER_PIN = A2;
@@ -45,7 +45,7 @@ const int MAX_MOTOR_SPEED = 250;
 const int BASE_SPEED = 170; // базовая скорость
 const unsigned long BASE_DELAY = 500;         // задержка между действиями
 
-int minIRL = 200, minIRR = 200, maxIRL = 800, maxIRR = 800;
+int minIRL = 200, minIRM = 200,minIRR = 200, maxIRL = 600, maxIRM = 600, maxIRR = 600;
 unsigned long startTime = 0; // Время начала таймера
 bool followTheLane = true;   // true - следуем по линии или false - едем прямо
 
@@ -93,8 +93,8 @@ int const DISTANCE_TO_DRIVE_FINISH = 15;       // сколько сантиме�
 
 // Логгирование
 bool logLCD = true;
-bool logConsole = false;
-unsigned long  testTime = 5000;         // время для тестирования функции
+bool logConsole = true;
+unsigned long  testTime = 2000;         // время для тестирования функции
 const unsigned long  DISPLAY_TIME = 200;         // время для отображения информации на LCD дисплее
 
 void setup()
@@ -120,7 +120,6 @@ void setup()
   initServo();
   logInit();
   // start();
-   followTheLane = false;
 }
 
 void loop()
@@ -128,7 +127,7 @@ void loop()
   // ##### Тесты Начало ######
    test();
   // ##### Тесты Конец ######
-
+ //pid();
 //driveSomeTime(1000);
 //driveSomeTime(1000,-BASE_SPEED);
 //  obezdObject(30,20,40);

@@ -22,7 +22,7 @@ extern const int MAX_MOTOR_SPEED;
 
 extern const int BASE_SPEED;
 extern const unsigned long BASE_DELAY;
-extern int minIRL, minIRR, maxIRL, maxIRR;
+extern int minIRL, minIRM,minIRR, maxIRL, maxIRM, maxIRR;
 
 extern const int SERVO_OPEN_POSITION;
 extern const int SERVO_CLOSE_POSITION;

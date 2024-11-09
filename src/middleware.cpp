@@ -4,6 +4,7 @@
 #include <uzd.h>
 #include <LCD.h>
 #include <encoder.h>
+#include <log.h>
 
 // Функция для нормализации значений, которые выдает ИК датчик
 int getIRSensorValue(int sensor)
@@ -15,16 +16,24 @@ int getIRSensorValue(int sensor)
   {
     minIRL = min(minIRL, irValue); // Обновляем минимальные и максимальные значения
     maxIRL = max(maxIRL, irValue); // Обновляем минимальные и максимальные значения
-
     result = map(irValue, minIRL, maxIRL, 0, 1024); // Преобразовываем значения датчиков
+//    consoleLog("minIRL", minIRL,"maxIRL", maxIRL,"irValue", irValue,"result", result);
   }
-  else
+  else if (sensor == IR_SENSOR_R_PIN)
   {
     minIRR = min(minIRR, irValue);                  // Обновляем минимальные и максимальные значения
     maxIRR = max(maxIRR, irValue);                  // Обновляем минимальные и максимальные значения
     result = map(irValue, minIRR, maxIRR, 0, 1024); // Преобразовываем значения датчиков
+ //   consoleLog("minIRR", minIRR,"maxIRR", maxIRR,"irValue", irValue,"result", result);
+  }
+   else if (sensor == IR_SENSOR_M_PIN)
+  {
+    minIRM = min(minIRM, irValue);                  // Обновляем минимальные и максимальные значения
+    maxIRM = max(maxIRM, irValue);                  // Обновляем минимальные и максимальные значения
+    result = map(irValue, minIRM, maxIRM, 0, 1024); // Преобразовываем значения датчиков
   };
-  // return IS_IR_SENSORS_REVERS? 1024-result:result;
+  //  consoleLog("minIRL", minIRL, "minIRM", minIRM, "minIRR", minIRR, testTime);
+  //  consoleLog("maxIRL", maxIRL, "maxIRM", maxIRM, "maxIRR", maxIRR, testTime);
   return result;
 }
 
@@ -33,8 +42,11 @@ int getIRError()
 {
   int x = getIRSensorValue(IR_SENSOR_L_PIN);
   int y = getIRSensorValue(IR_SENSOR_R_PIN);
-  // lcdShow(0, 0, x);
-  // lcdShow(1, 0, y);
+  // if (logLCD)
+  // {
+  //   lcdShow(0, 8,"IRL", x);
+  //   lcdShow(1, 8, "IRR",y);
+  // }
   return y - x;
 }
 
@@ -42,19 +54,23 @@ int getEncoderError()
 {
   int x = getEncoderL();
   int y = getEncoderR();
-  // lcdShow(0, 0, x);
-  // lcdShow(1, 0, y);
+  // if (logLCD)
+  // {
+  //   lcdShow(0, 8, "EncL",x);
+  //   lcdShow(1, 8, "EncR",y);
+  // }
   return y - x;
 }
 
 int getWallError()
 {
-  return getSideDistance()- walldistance;
+  return getSideDistance() - walldistance;
 }
 
 int getError()
 {
-  return maze? getWallError() : followTheLane? getIRError() : getEncoderError();
+  return maze ? getWallError() : followTheLane ? getIRError()
+                                               : getEncoderError();
 }
 
 bool isOnBlack(int sensor)
@@ -77,5 +93,3 @@ bool isOnCross()
   }
   return result;
 }
-
-
